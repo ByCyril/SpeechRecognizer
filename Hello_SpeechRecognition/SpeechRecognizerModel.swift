@@ -12,6 +12,7 @@ import Speech
 class SpeechRecognizerModel: NSObject, SFSpeechRecognizerDelegate {
     
     typealias RequestSpeechAuthorizationCompletion = (_ success: Bool) -> Void
+    typealias ClassifySoeechCompletion = (_ text: String?, _ error: Error?) -> Void
     
     private let audioEngine = AVAudioEngine()
     private let speechRecognizer = SFSpeechRecognizer()
@@ -24,41 +25,37 @@ class SpeechRecognizerModel: NSObject, SFSpeechRecognizerDelegate {
         }
     }
     
-    public func classifySpeech() {
+    public func classifySpeech(completion: @escaping ClassifySoeechCompletion) {
         let node = audioEngine.inputNode
         let recordingFormat = node.outputFormat(forBus: 0)
         
-        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, _) in
+        node.installTap(onBus: 0, bufferSize: 1025, format: recordingFormat) { (buffer, _) in
             self.request.append(buffer)
         }
         
         audioEngine.prepare()
+        
         do {
             try audioEngine.start()
         } catch {
             print(error.localizedDescription)
         }
+        
+        recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { (result, error) in
+            
+            if let result = result {
+                let bestString = result.bestTranscription.formattedString
+                completion(bestString, nil)
+            } else if let error = error {
+                completion(nil, error)
+            }
+        })
     }
     
-    func bow(text: String) -> [String: Double] {
-        var bagOfWords = [String: Double]()
-        
-        let tagger = NSLinguisticTagger(tagSchemes: [.tokenType], options: 0)
-        let range = NSRange(location: 0, length: text.utf16.count)
-        let options: NSLinguisticTagger.Options = [.omitPunctuation, .omitWhitespace]
-        tagger.string = text.lowercased()
-        
-        tagger.enumerateTags(in: range, unit: .word, scheme: .tokenType, options: options) { _, tokenRange, _ in
-            let word = (text as NSString).substring(with: tokenRange)
-            if bagOfWords[word] != nil {
-                bagOfWords[word]! += 1
-            } else {
-                bagOfWords[word] = 1
-            }
-        }
-        
-        return bagOfWords
+    public func finishRecognitionTask() {
+        recognitionTask?.cancel()
+        audioEngine.stop()
+        recognitionTask = nil
     }
-
     
 }
