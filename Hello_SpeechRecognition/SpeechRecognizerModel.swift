@@ -52,7 +52,7 @@ class SpeechRecognizerModel: NSObject, SFSpeechRecognizerDelegate {
         })
     }
     
-    public func finishRecognitionTask() {
+    public func stopListening() {
         audioEngine.stop()
         request.endAudio()
         recognitionTask?.cancel()

@@ -11,32 +11,36 @@ import Speech
 
 class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
-    @IBOutlet var detectedTextLabel: UILabel!
-    @IBOutlet var startListingButton: UIButton!
-    
     private var speechRecognizer: SpeechRecognizerModel!
-
+    private var mainView: SpeechRecognitionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         speechRecognizer = SpeechRecognizerModel()
-        
         speechRecognizer.requestSpeechAuthorization { (success) in
             print(success)
         }
         
+        mainView = SpeechRecognitionView(frame: view.bounds)
+        view.addSubview(mainView)
+        
+        mainView.setStartListeningButtonAction(#selector(ViewController.startListeningAction), at: self)
+        mainView.setStopListeningButtonAction(#selector(ViewController.stopListeningAction), at: self)
     }
     
-    @IBAction func startListening() {
-        speechRecognizer.classifySpeech { (text, error) in
-            if let text = text {
-                self.detectedTextLabel.text = text
+    @objc
+    public func startListeningAction() {
+        speechRecognizer.classifySpeech { (results, error) in
+            if let results = results {
+                self.mainView.displayText(results)
             }
         }
     }
     
-    @IBAction func stopListening() {
-        speechRecognizer.finishRecognitionTask()
+    @objc
+    public func stopListeningAction() {
+        speechRecognizer.stopListening()
     }
 
 }
