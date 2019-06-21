@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Start Listing"/>
                                 <connections>
-                                    <action selector="startListening" destination="BYZ-38-t0r" eventType="touchUpInside" id="9hM-f3-Ueh"/>
+                                    <action selector="startListening" destination="BYZ-38-t0r" eventType="touchUpInside" id="oDw-OA-OX5"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ln-DV-usz">
@@ -33,28 +33,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="834-38-HsS">
-                                <rect key="frame" x="180" y="214" width="54" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Classify"/>
-                                <connections>
-                                    <action selector="classifyText" destination="BYZ-38-t0r" eventType="touchUpInside" id="02B-y7-CoM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ner-3j-BCa">
-                                <rect key="frame" x="189" y="340" width="36" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Clear"/>
-                                <connections>
-                                    <action selector="clearLabel" destination="BYZ-38-t0r" eventType="touchUpInside" id="jbp-Vx-WPs"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8F-L7-9CD">
-                                <rect key="frame" x="348" y="109" width="46" height="30"/>
+                                <rect key="frame" x="189" y="276" width="37" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Done"/>
                                 <connections>
-                                    <action selector="restart" destination="BYZ-38-t0r" eventType="touchUpInside" id="DmI-yX-xLz"/>
+                                    <action selector="stopListening" destination="BYZ-38-t0r" eventType="touchUpInside" id="idQ-0x-Jjg"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		010D73DC22BD61B90056F10F /* TextClassificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D73DB22BD61B90056F10F /* TextClassificationModel.swift */; };
-		01245BA022BD72CD001A9373 /* FeedbackModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 01245B9F22BD72CD001A9373 /* FeedbackModel.mlmodel */; };
 		01767DA422BC0B8F002E61F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01767DA322BC0B8F002E61F5 /* AppDelegate.swift */; };
 		01767DA622BC0B8F002E61F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01767DA522BC0B8F002E61F5 /* ViewController.swift */; };
 		01767DA922BC0B8F002E61F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01767DA722BC0B8F002E61F5 /* Main.storyboard */; };
@@ -18,8 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		010D73DB22BD61B90056F10F /* TextClassificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClassificationModel.swift; sourceTree = "<group>"; };
-		01245B9F22BD72CD001A9373 /* FeedbackModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FeedbackModel.mlmodel; path = feedback_model/FeedbackModel.mlmodel; sourceTree = SOURCE_ROOT; };
 		01767DA022BC0B8F002E61F5 /* Hello_SpeechRecognition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hello_SpeechRecognition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01767DA322BC0B8F002E61F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01767DA522BC0B8F002E61F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,9 +58,7 @@
 			children = (
 				01767DA322BC0B8F002E61F5 /* AppDelegate.swift */,
 				01767DA522BC0B8F002E61F5 /* ViewController.swift */,
-				010D73DB22BD61B90056F10F /* TextClassificationModel.swift */,
 				01767DB522BC0EE3002E61F5 /* SpeechRecognizerModel.swift */,
-				01245B9F22BD72CD001A9373 /* FeedbackModel.mlmodel */,
 				01767DA722BC0B8F002E61F5 /* Main.storyboard */,
 				01767DAA22BC0B90002E61F5 /* Assets.xcassets */,
 				01767DAC22BC0B90002E61F5 /* LaunchScreen.storyboard */,
@@ -145,9 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01767DB622BC0EE3002E61F5 /* SpeechRecognizerModel.swift in Sources */,
-				010D73DC22BD61B90056F10F /* TextClassificationModel.swift in Sources */,
 				01767DA622BC0B8F002E61F5 /* ViewController.swift in Sources */,
-				01245BA022BD72CD001A9373 /* FeedbackModel.mlmodel in Sources */,
 				01767DA422BC0B8F002E61F5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
