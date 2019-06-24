@@ -31,9 +31,9 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     @objc
     public func startListeningAction() {
-        speechRecognizer.classifySpeech { (results, error) in
-            if let results = results {
-                self.mainView.displayText(results)
+        speechRecognizer.classifySpeech { (text, intent, error) in
+            if let text = text {
+                self.mainView.displayText(text + " Intent: \(intent)")
             }
         }
     }
