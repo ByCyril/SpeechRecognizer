@@ -26,21 +26,31 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         view.addSubview(mainView)
         
         mainView.setStartListeningButtonAction(#selector(ViewController.startListeningAction), at: self)
-        mainView.setStopListeningButtonAction(#selector(ViewController.stopListeningAction), at: self)
     }
     
     @objc
     public func startListeningAction() {
+        
+        mainView.enableListenButton(false)
+        
+        speechRecognizer.requireOnDevice { (success) in
+            if !success {
+//                not ios 13
+            }
+        }
+        
+        speechRecognizer.supportOnDevice { (success) in
+            if !success {
+//                not ios 13
+            }
+        }
+        
         speechRecognizer.classifySpeech { (text, intent, error) in
             if let text = text {
-                self.mainView.displayText(text + " Intent: \(intent)")
+                self.mainView.displayText(text + "\nIntent: \(intent!)")
             }
+            self.mainView.enableListenButton(true)
         }
     }
     
-    @objc
-    public func stopListeningAction() {
-        speechRecognizer.stopListening()
-    }
-
 }

@@ -13,6 +13,8 @@ class SpeechRecognizerModel: NSObject, SFSpeechRecognizerDelegate {
     
     typealias RequestSpeechAuthorizationCompletion = (_ success: Bool) -> Void
     typealias ClassifySoeechCompletion = (_ text: String? , _ boolResults: Bool?, _ error: Error?) -> Void
+    typealias SupportOnDevice = (_ success: Bool) -> Void
+    typealias RequireOnDevice = (_ success: Bool) -> Void
     
     private let audioEngine = AVAudioEngine()
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en_US"))
@@ -35,55 +37,64 @@ class SpeechRecognizerModel: NSObject, SFSpeechRecognizerDelegate {
             self.request.append(buffer)
         }
         
-        audioEngine.prepare()
-
-        do {
-            try audioEngine.start()
-        } catch {
-            print(error.localizedDescription)
-        }
+        startAudioEngine()
         
-        if #available(iOS 13, *) {
-            speechRecognizer?.supportsOnDeviceRecognition = true
-            
-        } else {
-            
-        }
-        
-        if #available(iOS 13, *) {
-            request.requiresOnDeviceRecognition = true
-        } else {
-            // Fallback on earlier versions
-        }
-//
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { (result, error) in
             
             if let result = result {
                 
                 let text = result.bestTranscription.formattedString.lowercased()
                 let intent = self.speechDecision.intent(text)
-                self.stopListening()
                 completion(text, intent, nil)
+                print("text",text, result.isFinal)
+                self.stopListening()
                 
-                return
             } else if let error = error {
                 print("error",error.localizedDescription)
                 completion(nil,nil, error)
             }
-        
+            
         })
-        
-        
         
     }
     
+    private func startAudioEngine() {
+        audioEngine.prepare()
+        
+        do {
+            try audioEngine.start()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    public func requireOnDevice(handler: RequireOnDevice) {
+        if #available(iOS 13, *) {
+            request.requiresOnDeviceRecognition = true
+            handler(true)
+        } else {
+            handler(false)
+        }
+    }
+    
+    public func supportOnDevice(handler: SupportOnDevice) {
+        if #available(iOS 13, *) {
+            speechRecognizer?.supportsOnDeviceRecognition = true
+            handler(true)
+        } else {
+            handler(false)
+        }
+    }
+    
     public func stopListening() {
+        
+        recognitionTask?.cancel()
+        recognitionTask?.finish()
+        request.endAudio()
         audioEngine.stop()
         audioEngine.inputNode.removeTap(onBus: 0)
-        request.endAudio()
-        recognitionTask?.cancel()
-        recognitionTask = nil
         
+        recognitionTask = nil
     }
     
 }

@@ -17,13 +17,6 @@ class SpeechRecognitionView: UIView {
         return button
     }()
     
-    private let stopListeningButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Stop Listening", for: .normal)
-        button.setTitleColor(.red, for: .normal)
-        return button
-    }()
-    
     private let displayText: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -46,10 +39,9 @@ class SpeechRecognitionView: UIView {
         backgroundColor = .white
         
         addSubview(startListeningButton)
-        addSubview(stopListeningButton)
         addSubview(displayText)
         
-        [startListeningButton, stopListeningButton, displayText].forEach { (element) in
+        [startListeningButton, displayText].forEach { (element) in
             element.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -57,26 +49,27 @@ class SpeechRecognitionView: UIView {
                                      startListeningButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
                                      startListeningButton.heightAnchor.constraint(equalToConstant: 50),
                                      startListeningButton.widthAnchor.constraint(equalToConstant: 150)])
-        
-        NSLayoutConstraint.activate([stopListeningButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                                     stopListeningButton.centerYAnchor.constraint(equalTo: startListeningButton.centerYAnchor, constant: 75),
-                                     stopListeningButton.heightAnchor.constraint(equalToConstant: 50),
-                                     stopListeningButton.widthAnchor.constraint(equalToConstant: 150)])
+ 
         
         NSLayoutConstraint.activate([displayText.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                                     displayText.centerYAnchor.constraint(equalTo: stopListeningButton.centerYAnchor, constant: 75),
+                                     displayText.centerYAnchor.constraint(equalTo: startListeningButton.centerYAnchor, constant: 75),
                                      displayText.heightAnchor.constraint(equalToConstant: 200),
                                      displayText.widthAnchor.constraint(equalToConstant: self.frame.width)])
     }
     
     @objc
-    public func setStartListeningButtonAction(_ selector: Selector, at: UIViewController) {
-        startListeningButton.addTarget(at, action: selector, for: .touchUpInside)
+    public func enableListenButton(_ bool: Bool) {
+        if bool {
+            startListeningButton.alpha = 1
+        } else {
+            startListeningButton.alpha = 0.25
+        }
+        startListeningButton.isEnabled = bool
     }
     
     @objc
-    public func setStopListeningButtonAction(_ selector: Selector, at: UIViewController) {
-        stopListeningButton.addTarget(at, action: selector, for: .touchUpInside)
+    public func setStartListeningButtonAction(_ selector: Selector, at: UIViewController) {
+        startListeningButton.addTarget(at, action: selector, for: .touchUpInside)
     }
     
     @objc
