@@ -2,10 +2,10 @@
 version=0
 num_segments=0
 num_columns=2
-nrows=8
+nrows=203
 [column_names]
 0000=text
-0001=label
+0001=stars
 [column_files]
-0000=m_5f14adf537c5a4d1.sidx:0
-0001=m_5f14adf537c5a4d1.sidx:1
+0000=m_1e8412c8c0f52267.sidx:0
+0001=m_1e8412c8c0f52267.sidx:1
