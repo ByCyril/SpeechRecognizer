@@ -20,7 +20,7 @@ class SpeechRecognizerModel: NSObject, SFSpeechRecognizerDelegate {
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en_US"))
     private var recognitionTask: SFSpeechRecognitionTask?
     private var request = SFSpeechAudioBufferRecognitionRequest()
-    private let speechDecision = SpeechDecisionModel()
+    private let intentModel = IntentModel()
     
     public func requestSpeechAuthorization(completion: @escaping RequestSpeechAuthorizationCompletion) {
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
@@ -44,13 +44,11 @@ class SpeechRecognizerModel: NSObject, SFSpeechRecognizerDelegate {
             if let result = result {
                 
                 let text = result.bestTranscription.formattedString.lowercased()
-                let intent = self.speechDecision.intent(text)
+                let intent = self.intentModel.intent(text)
                 completion(text, intent, nil)
-                print("text",text, result.isFinal)
                 self.stopListening()
                 
             } else if let error = error {
-                print("error",error.localizedDescription)
                 completion(nil,nil, error)
             }
             

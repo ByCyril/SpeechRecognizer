@@ -8,14 +8,19 @@
 
 import UIKit
 
-class SpeechDecisionModel {
+class IntentModel {
+    
     private var decisionDictionary: [String: Bool]? {
         //Format of the Property List.
         var propertyListForamt =  PropertyListSerialization.PropertyListFormat.xml
-        let plistPath: String? = Bundle.main.path(forResource: "DecisionData", ofType: "plist")! //the path of the data
+        
+        //the path of the data
+        let plistPath: String? = Bundle.main.path(forResource: "DecisionData", ofType: "plist")!
+        
         let plistXML = FileManager.default.contents(atPath: plistPath!)!
         
-        do {//convert the data to a dictionary and handle errors.
+        //convert the data to a dictionary and handle errors.
+        do {
             return try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListForamt) as? [String:Bool]
         } catch {
             return nil
