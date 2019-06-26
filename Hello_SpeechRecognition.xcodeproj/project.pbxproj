@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		010373C922C14CCA0089E962 /* IntentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010373C822C14CCA0089E962 /* IntentModel.swift */; };
 		010373CB22C14D4A0089E962 /* DecisionData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 010373CA22C14D4A0089E962 /* DecisionData.plist */; };
+		010373CF22C1D25E0089E962 /* FeedbackModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 010373CE22C1D25E0089E962 /* FeedbackModel.mlmodel */; };
 		01245BD422BD872B001A9373 /* SpeechRecognitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01245BD322BD872B001A9373 /* SpeechRecognitionView.swift */; };
 		01767DA422BC0B8F002E61F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01767DA322BC0B8F002E61F5 /* AppDelegate.swift */; };
 		01767DA622BC0B8F002E61F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01767DA522BC0B8F002E61F5 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		010373C822C14CCA0089E962 /* IntentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentModel.swift; sourceTree = "<group>"; };
 		010373CA22C14D4A0089E962 /* DecisionData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DecisionData.plist; sourceTree = "<group>"; };
+		010373CE22C1D25E0089E962 /* FeedbackModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = FeedbackModel.mlmodel; path = feedback_model/FeedbackModel.mlmodel; sourceTree = SOURCE_ROOT; };
 		01245BD322BD872B001A9373 /* SpeechRecognitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionView.swift; sourceTree = "<group>"; };
 		01767DA022BC0B8F002E61F5 /* Hello_SpeechRecognition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hello_SpeechRecognition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01767DA322BC0B8F002E61F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				01245BD322BD872B001A9373 /* SpeechRecognitionView.swift */,
 				01767DB522BC0EE3002E61F5 /* SpeechRecognizerModel.swift */,
 				010373C822C14CCA0089E962 /* IntentModel.swift */,
+				010373CE22C1D25E0089E962 /* FeedbackModel.mlmodel */,
 				01767DAA22BC0B90002E61F5 /* Assets.xcassets */,
 				01767DAC22BC0B90002E61F5 /* LaunchScreen.storyboard */,
 				01767DAF22BC0B90002E61F5 /* Info.plist */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01767DB622BC0EE3002E61F5 /* SpeechRecognizerModel.swift in Sources */,
+				010373CF22C1D25E0089E962 /* FeedbackModel.mlmodel in Sources */,
 				01767DA622BC0B8F002E61F5 /* ViewController.swift in Sources */,
 				01245BD422BD872B001A9373 /* SpeechRecognitionView.swift in Sources */,
 				01767DA422BC0B8F002E61F5 /* AppDelegate.swift in Sources */,

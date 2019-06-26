@@ -46,7 +46,6 @@ class SpeechRecognizerModel: NSObject, SFSpeechRecognizerDelegate {
                 let text = result.bestTranscription.formattedString.lowercased()
                 let intent = self.intentModel.intent(text)
                 completion(text, intent, nil)
-                self.stopListening()
                 
             } else if let error = error {
                 completion(nil,nil, error)

@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Speech
 
-class ViewController: UIViewController, SFSpeechRecognizerDelegate {
+class ViewController: UIViewController {
     
     private var speechRecognizer: SpeechRecognizerModel!
     private var mainView: SpeechRecognitionView!
